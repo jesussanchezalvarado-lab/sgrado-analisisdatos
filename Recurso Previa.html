@@ -715,21 +715,21 @@
   ];
   const escalaTexto = k => { const e = ESCALAS.find(x => x[0] === k); return e ? [4, 3, 2, 1].map(n => n + ' = ' + e[2][n - 1]).join('; ') : ''; };
   const NOTAS = {
-    codPerfil: 'Una fila por pregunta de perfil. Escribe qué información recoge y qué significa cada código (Código 1 = lo que marcaste con 1, y así). Deja vacíos los códigos que no uses; si necesitas más, agrega una columna.',
-    codPreguntas: 'Cada cuadro es una dimensión. Escribe su nombre y elige el tipo de escala que usaron todos sus enunciados, así no la repites en cada fila. Usa "+ Fila en esta dimensión" para sumar enunciados y "+ Agregar dimensión" para un cuadro nuevo. Numera los enunciados de corrido, después del perfil.',
-    perfil: 'Una fila por encuestado. Cambia P1, P2, P3 por tus variables de perfil (puedes agregar columnas) y escribe el código de cada respuesta. El número de encuestado se pone solo. Si alguien no respondió, deja la celda vacía.',
+    codPerfil: 'Una fila por pregunta de perfil. Escribe la pregunta y qué significa cada código (en la columna 1, lo que marcaste con 1, y así). Las filas traen un ejemplo de fondo (género, años de experiencia, edad) que se reemplaza al escribir. Deja vacíos los códigos que no uses; si necesitas más, agrega una columna.',
+    codPreguntas: 'Cada tarjeta es una dimensión. Escribe su nombre y elige el tipo de escala que usaron todos sus enunciados, así no la repites en cada fila. Usa "+ Fila en esta dimensión" para sumar enunciados y "+ Agregar dimensión" para una tarjeta nueva. Numera los enunciados de corrido, después del perfil.',
+    perfil: 'Una fila por encuestado. Cambia P1, P2, P3 por tus preguntas de perfil (puedes agregar columnas) y escribe el código de cada respuesta. El número de encuestado se pone solo. Si alguien no respondió, deja la celda vacía.',
     preguntas: 'Una fila por encuestado y una columna por enunciado. Los nombres continúan después del perfil (aquí P4 a P11); cámbialos según tu libro de códigos. Cada celda lleva el código de la respuesta (1 a 4). Agrega filas hasta completar tu número de encuestados. Si alguien no respondió, deja la celda vacía.',
     perfilInf: 'Una fila por informante. En la primera columna escribe su código (por ejemplo E1CM1; en un grupo focal, F1P2). Cambia P1, P2, P3 por tus preguntas de perfil y escribe el código de cada respuesta. Si alguien no respondió, deja la celda vacía.',
   };
-  const PH = { codPerfil: { variable: 'Ej: P1', info: 'Ej: Género', c1: 'Ej: Hombre', c2: 'Ej: Mujer', c3: 'Ej: Prefiero no decirlo' }, perfil: { c1: 'Ej: 1' }, preguntas: { c1: 'Ej: 3' }, perfilInf: { c0: 'Ej: E1CM1', c1: 'Ej: 1' } };
+  const PH = { codPerfil: [{ num: 'Ej: P1', info: 'Ej: Género', c1: 'Ej: Hombre', c2: 'Ej: Mujer', c3: 'Ej: Prefiero no decirlo' }, { num: 'Ej: P2', info: 'Ej: Años de experiencia', c1: 'Ej: Menos de 5', c2: 'Ej: 5 a 10', c3: 'Ej: Más de 10' }, { num: 'Ej: P3', info: 'Ej: Edad', c1: 'Ej: 18 a 25', c2: 'Ej: 26 a 35', c3: 'Ej: 36 a 45', c4: 'Ej: Más de 45' }], perfil: { c1: 'Ej: 1' }, preguntas: { c1: 'Ej: 3' }, perfilInf: { c0: 'Ej: E1CM1', c1: 'Ej: 1' } };
   const mkCols = labels => labels.map((l, i) => ({ key: 'c' + i, label: l }));
   const mkRows = (cols, n) => Array.from({ length: n }, (_, i) => { const r = { id: i + 1 }; cols.forEach(c => { r[c.key] = ''; }); return r; });
-  const nuevoCodPerfil = () => ({ cols: [['variable', 'P'], ['info', 'Variable'], ['c1', 'Código 1'], ['c2', 'Código 2'], ['c3', 'Código 3'], ['c4', 'Código 4']].map(a => ({ key: a[0], label: a[1] })), rows: ['P1', 'P2', 'P3'].map((v, i) => ({ id: i + 1, variable: v, info: '', c1: '', c2: '', c3: '', c4: '' })) });
+  const nuevoCodPerfil = () => ({ cols: [['num', 'P'], ['info', 'Pregunta'], ['c1', '1'], ['c2', '2'], ['c3', '3'], ['c4', '4']].map(a => ({ key: a[0], label: a[1] })), rows: ['P1', 'P2', 'P3'].map((v, i) => ({ id: i + 1, num: v, info: '', c1: '', c2: '', c3: '', c4: '' })) });
   const nuevoPerfil = id => { const pc = mkCols(['Encuestado', 'P1', 'P2', 'P3']); return { id, nombre: '', codPerfil: nuevoCodPerfil(), perfil: { cols: pc, rows: mkRows(pc, 10) } }; };
   const nuevaEncuesta = id => {
     const rc = mkCols(['Encuestado', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11']);
     return { id, nombre: '', perfiles: [nuevoPerfil(1)],
-      codPreguntas: { groups: [{ id: 1, dimension: '', escalaTipo: null, rows: ['P4', 'P5', 'P6', 'P7'].map((v, i) => ({ id: i + 1, variable: v, enunciado: '' })) }] },
+      codPreguntas: { groups: [{ id: 1, dimension: '', escalaTipo: null, rows: ['P4', 'P5', 'P6', 'P7'].map((v, i) => ({ id: i + 1, num: v, enunciado: '' })) }] },
       preguntas: { cols: rc, rows: mkRows(rc, 10) } };
   };
   const nuevoInf = () => { const ic = mkCols(['Informante', 'P1', 'P2', 'P3']); return { codPerfil: nuevoCodPerfil(), perfil: { cols: ic, rows: mkRows(ic, 4) } }; };
@@ -748,6 +748,11 @@
     return { encs: [e], inf: null, act: 'e1' };
   }
   let B = cargarBases();
+  // Datos guardados con la versión anterior: se actualizan los nombres de columna y la clave interna de la columna P.
+  const VIEJO = 'Vari' + 'able', CLAVE_VIEJA = VIEJO.toLowerCase();
+  const moverClave = r => { if (r && CLAVE_VIEJA in r) { if (!('num' in r)) r.num = r[CLAVE_VIEJA]; delete r[CLAVE_VIEJA]; } };
+  B.encs.forEach(e => e.codPreguntas.groups.forEach(g => g.rows.forEach(moverClave)));
+  [...B.encs.flatMap(e => e.perfiles.map(p => p.codPerfil)), ...(B.inf ? [B.inf.codPerfil] : [])].forEach(t => { t.rows.forEach(moverClave); t.cols.forEach(c => { if (c.key === CLAVE_VIEJA) c.key = 'num'; if (c.key === 'info' && c.label === VIEJO) c.label = 'Pregunta'; const m = /^Código (\d+)$/.exec(c.label); if (m) c.label = m[1]; }); });
   const maxId = arr => Math.max(0, ...arr.map(r => r.id));
   const esInf = () => B.act === 'inf' && !!B.inf;
   const enc = () => B.encs.find(e => 'e' + e.id === B.act) || B.encs[0];
@@ -801,7 +806,7 @@
         const pf = multiQ ? perfilDeFila(e, ri + 1) : null;
         return `<td class="nump">${off + ri + 1}</td>` + (multiQ ? `<td class="perf-c">${pf ? esc(nombrePerfil(e, pf)) : '<span title="Esta fila no corresponde a ningún perfil">Sin perfil</span>'}</td>` : '');
       }
-      return `<td><input data-ac="cel" data-r="${r.id}" data-k="${esc(c.key)}" value="${esc(r[c.key])}" placeholder="${ri === 0 ? esc((ph && ph[c.key]) || '') : ''}" aria-label="${esc(c.label)}, fila ${ri + 1}"></td>`;
+      return `<td><input data-ac="cel" data-r="${r.id}" data-k="${esc(c.key)}" value="${esc(r[c.key])}" placeholder="${esc(((Array.isArray(ph) ? ph[ri] : (ri === 0 ? ph : null)) || {})[c.key] || '')}" aria-label="${esc(c.label)}, fila ${ri + 1}"></td>`;
     }).join('') + `<td style="width:44px;text-align:center"><button type="button" class="x" data-ac="delrow" data-r="${r.id}" aria-label="Eliminar fila ${ri + 1}">×</button></td></tr>`).join('');
     const titulo = [...tabsDef().libro, ...tabsDef().resp].find(x => x[0] === tab)[1];
     return `<div class="scroll-x"><table class="tabla-ed" style="min-width:${k === 'codPerfil' ? 760 : (k === 'preguntas' ? 720 : 420)}px"><caption class="sr">${esc(titulo)}</caption><thead><tr>${head}<th><span class="sr">Acciones</span></th></tr></thead><tbody>${body}</tbody></table></div>`;
@@ -814,7 +819,7 @@
         <p class="lab-dim-t">Tipo de escala Likert de esta dimensión</p>
         <div class="esc">${ESCALAS.map(x => `<button type="button" class="chip${g.escalaTipo === x[0] ? ' on' : ''}" data-ac="esc" data-g="${g.id}" data-v="${x[0]}" aria-pressed="${g.escalaTipo === x[0]}">${x[1]}</button>`).join('')}</div>
         ${e ? `<div class="refs">${e[2].map((t, i) => `<span><b>${i + 1}</b> · ${esc(t)}</span>`).join('')}</div>` : ''}</div>
-        <div class="dim-b">${g.rows.map((r, ri) => `<div class="fila-q"><label class="q-p">P<input data-ac="gcel" data-g="${g.id}" data-r="${r.id}" data-k="variable" value="${esc(r.variable)}" placeholder="${ri === 0 && g.id === gs[0].id ? 'Ej: P4' : ''}"></label><label class="q-e">Enunciado<textarea data-ac="gcel" data-g="${g.id}" data-r="${r.id}" data-k="enunciado" rows="2" placeholder="${ri === 0 && g.id === gs[0].id ? 'Ej: Estudié Pedagogía porque me agrada enseñar.' : ''}">${esc(r.enunciado)}</textarea></label><button type="button" class="x" data-ac="delg" data-g="${g.id}" data-r="${r.id}" aria-label="Eliminar fila ${ri + 1} de esta dimensión">×</button></div>`).join('')}
+        <div class="dim-b">${g.rows.map((r, ri) => `<div class="fila-q"><label class="q-p">P<input data-ac="gcel" data-g="${g.id}" data-r="${r.id}" data-k="num" value="${esc(r.num)}" placeholder="${ri === 0 && g.id === gs[0].id ? 'Ej: P4' : ''}"></label><label class="q-e">Enunciado<textarea data-ac="gcel" data-g="${g.id}" data-r="${r.id}" data-k="enunciado" rows="2" placeholder="${ri === 0 && g.id === gs[0].id ? 'Ej: Estudié Pedagogía porque me agrada enseñar.' : ''}">${esc(r.enunciado)}</textarea></label><button type="button" class="x" data-ac="delg" data-g="${g.id}" data-r="${r.id}" aria-label="Eliminar fila ${ri + 1} de esta dimensión">×</button></div>`).join('')}
         <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="mini-btn" data-ac="addg" data-g="${g.id}">+ Fila en esta dimensión</button>${gs.length > 1 ? `<button type="button" class="mini-btn" data-ac="deldim" data-g="${g.id}">Quitar esta dimensión</button>` : ''}</div></div></div>`;
     }).join('');
   }
@@ -889,7 +894,7 @@
       const n = ac === 'addrow10' ? 10 : 1;
       for (let i = 0; i < n; i++) { const r = { id: maxId(t.rows) + 1 }; t.cols.forEach(c => { r[c.key] = ''; }); t.rows.push(r); }
     } else if (ac === 'addcol') {
-      const label = k === 'codPerfil' ? 'Código ' + (t.cols.length - 1) : 'Nueva';
+      const label = k === 'codPerfil' ? String(t.cols.length - 1) : 'Nueva';
       const key = 'c' + Date.now(); t.cols.push({ key, label }); t.rows.forEach(r => { r[key] = ''; });
     } else if (ac === 'delcol') {
       const c = t.cols.find(x => x.key === d.k); if (!c) return;
@@ -900,15 +905,15 @@
       if (tieneDatos(r, autoNum(k) ? t.cols[0].key : null) && !confirm('Esta fila tiene datos. ¿Quieres eliminarla?')) return;
       t.rows = t.rows.filter(x => String(x.id) !== d.r);
     } else if (ac === 'adddim') {
-      gr().push({ id: maxId(gr()) + 1, dimension: '', escalaTipo: null, rows: [{ id: idGrupoFila() + 1, variable: '', enunciado: '' }] });
+      gr().push({ id: maxId(gr()) + 1, dimension: '', escalaTipo: null, rows: [{ id: idGrupoFila() + 1, num: '', enunciado: '' }] });
     } else if (ac === 'addg') {
-      const g = gr().find(x => String(x.id) === d.g); if (g) g.rows.push({ id: idGrupoFila() + 1, variable: '', enunciado: '' });
+      const g = gr().find(x => String(x.id) === d.g); if (g) g.rows.push({ id: idGrupoFila() + 1, num: '', enunciado: '' });
     } else if (ac === 'delg') {
       const g = gr().find(x => String(x.id) === d.g); const r = g && g.rows.find(x => String(x.id) === d.r); if (!r) return;
       if (tieneDatos(r) && !confirm('Esta fila tiene datos. ¿Quieres eliminarla?')) return;
       g.rows = g.rows.filter(x => String(x.id) !== d.r);
       if (!g.rows.length && gr().length > 1) G().groups = gr().filter(x => x !== g);
-      else if (!g.rows.length) g.rows.push({ id: idGrupoFila() + 1, variable: '', enunciado: '' });
+      else if (!g.rows.length) g.rows.push({ id: idGrupoFila() + 1, num: '', enunciado: '' });
     } else if (ac === 'deldim') {
       const g = gr().find(x => String(x.id) === d.g); if (!g) return;
       if ((g.dimension || g.rows.some(r => tieneDatos(r))) && !confirm('Esta dimensión tiene datos. ¿Quieres quitarla?')) return;
@@ -1029,7 +1034,7 @@
         c0 += pc.length + 1;
       });
       if (!inf) {
-        const qc = [['dimension', 'Dimensión'], ['variable', 'P'], ['enunciado', 'Enunciado'], ['escala', 'Escala']];
+        const qc = [['dimension', 'Dimensión'], ['num', 'P'], ['enunciado', 'Enunciado'], ['escala', 'Escala']];
         const q0 = c0;
         qc.forEach((col, j) => { const cc = ws.getCell(2, q0 + j); cc.value = col[1]; encabezado(cc); });
         let rCursor = 3;
@@ -1038,11 +1043,11 @@
           qc.forEach((col, j) => {
             if (col[0] === 'dimension') combinar(ws, r1, q0 + j, r2, q0 + j, g.dimension || null, cc => celda(cc, true));
             else if (col[0] === 'escala') combinar(ws, r1, q0 + j, r2, q0 + j, escalaTexto(g.escalaTipo) || null, cc => celda(cc, true));
-            else g.rows.forEach((f, k) => { const cc = ws.getCell(r1 + k, q0 + j); cc.value = valorCelda(f[col[0]]); celda(cc, col[0] === 'variable'); });
+            else g.rows.forEach((f, k) => { const cc = ws.getCell(r1 + k, q0 + j); cc.value = valorCelda(f[col[0]]); celda(cc, col[0] === 'num'); });
           });
           rCursor = r2 + 1;
         });
-        qc.forEach((col, j) => { ws.getColumn(q0 + j).width = { dimension: 24, variable: 10, enunciado: 60, escala: 50 }[col[0]]; });
+        qc.forEach((col, j) => { ws.getColumn(q0 + j).width = { dimension: 24, num: 10, enunciado: 60, escala: 50 }[col[0]]; });
         for (let r = 3; r < rCursor; r++) ws.getRow(r).height = 30;
       }
       // Hojas de respuestas. Con varios perfiles, la numeración es continua y Preguntas lleva la columna Perfil.
