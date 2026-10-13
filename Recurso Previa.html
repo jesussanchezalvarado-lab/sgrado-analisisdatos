@@ -568,11 +568,7 @@
     <p class="lead">En el análisis trabajarás con un programa según tu enfoque. Los recursos de análisis te enseñan a usarlo paso a paso; acá solo tienes que dejarlo listo antes de esa sesión, así llegas directo a analizar.</p>
     <div class="grid" id="software" style="margin-bottom:8px"></div>
     <h3 class="h3">Y luego, el análisis</h3>
-    <div class="grid">
-      <a class="card" href="./Recurso Cuantitativo.dc.html" style="border-top-color:var(--verde);text-decoration:none"><p class="card-t" style="color:var(--verde)">Recurso Cuantitativo</p><p class="txt">Analizar tu base en Jamovi y presentar los resultados.</p></a>
-      <a class="card" href="./Recurso Cualitativo.dc.html" style="border-top-color:var(--azul);text-decoration:none"><p class="card-t" style="color:var(--azul)">Recurso Cualitativo</p><p class="txt">Codificar en Atlas.ti y presentar los resultados.</p></a>
-      <a class="card" href="./Recurso Triangulacion.html" style="border-top-color:var(--morado);text-decoration:none"><p class="card-t" style="color:var(--morado)">Triangulación</p><p class="txt">Si aplicaste dos o más instrumentos, cruza los resultados al final.</p></a>
-    </div>
+    <div class="grid" id="recursosAnalisis"></div>
   </div>
   <div class="wrap-sm pie-vista"><button class="btn btn-sec" data-ir="3">← Volver</button><a class="btn btn-pri" href="./index.html" style="text-decoration:none;display:inline-flex;align-items:center">Volver al inicio</a></div>
 </section>
@@ -604,17 +600,36 @@
 
   /* ---------- vistas ---------- */
   const vistas = $$('.vista');
+  function indicesVisibles() {
+    const hay = Object.values(camino).some(Boolean);
+    return vistas.map((_, i) => i + 1).filter(n => !hay || n === 1 || n === 4 || (n === 2 && camino.encuesta) || (n === 3 && (camino.entrevista || camino.focal)));
+  }
+  function pintarEsquema() {
+    const visibles = indicesVisibles();
+    $('#esquema').innerHTML = visibles.map((n, i) => `<li><button type="button" data-ir="${n}"><span class="n" aria-hidden="true">${i + 1}</span>${esc(vistas[n - 1].dataset.titulo)}</button></li>`).join('');
+    const actual = vistas.findIndex(v => !v.hidden) + 1;
+    const botonActual = actual && $('#esquema button[data-ir="' + actual + '"]');
+    if (botonActual) botonActual.setAttribute('aria-current', 'step');
+  }
   function mostrar(n, enfocar) {
+    const visibles = indicesVisibles();
     n = Math.min(Math.max(1, n), vistas.length);
+    if (!visibles.includes(n)) {
+      const actual = vistas.findIndex(v => !v.hidden) + 1;
+      n = n > actual ? (visibles.find(v => v > actual) || visibles[visibles.length - 1]) : ([...visibles].reverse().find(v => v < actual) || visibles[0]);
+    }
     vistas.forEach((v, i) => { v.hidden = (i + 1 !== n); });
-    $$('#esquema button').forEach((b, i) => { if (i + 1 === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    $$('#esquema button').forEach(b => { if (+b.dataset.ir === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
     try { history.replaceState(null, '', '#v' + n); } catch (e) { /* archivo local */ }
     if (enfocar) {
       const h = $('h2', vistas[n - 1]); if (h) h.focus({ preventScroll: true });
-      const nav = $('.esquema'); window.scrollTo({ top: nav ? nav.offsetTop : 0, behavior: 'auto' });
+      const html = document.documentElement;
+      const scrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      html.style.scrollBehavior = scrollBehavior;
     }
   }
-  $('#esquema').innerHTML = vistas.map((v, i) => `<li><button type="button" data-ir="${i + 1}"><span class="n" aria-hidden="true">${i + 1}</span>${esc(v.dataset.titulo)}</button></li>`).join('');
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-ir]'); if (b) { mostrar(parseInt(b.dataset.ir, 10), true); return; }
     const s = e.target.closest('[data-salto]'); if (s) { e.preventDefault(); const t = document.getElementById(s.dataset.salto); if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' }); }
@@ -1062,10 +1077,14 @@
         (sel.length > 1 && (camino.encuesta && (camino.entrevista || camino.focal) || (camino.entrevista && camino.focal)) ? '<p style="margin:8px 0 0">Con más de un instrumento, cada uno se prepara y se analiza con su recurso. Al final, el recurso de triangulación sirve para cruzar los resultados.</p>' : '') + '</div></div>';
     }
     $('#resumenCamino').innerHTML = h;
+    pintarEsquema();
+    const visibles = indicesVisibles();
+    const actual = vistas.findIndex(v => !v.hidden) + 1;
+    if (actual && !visibles.includes(actual)) mostrar(visibles.find(n => n > actual) || visibles[visibles.length - 1], false);
     const hay = Object.values(camino).some(Boolean);
     const aplica = v => !hay || OPC.some(o => camino[o.k] && o.vista === v);
     $('#nota2').hidden = aplica(2); $('#nota3').hidden = aplica(3);
-    pintarListas(); pintarSoftware();
+    pintarListas(); pintarSoftware(); pintarRecursosAnalisis();
   }
   $('#caminos').addEventListener('change', e => { const k = e.target.dataset.k; if (!k) return; camino[k] = e.target.checked; guardar(K.camino, camino); pintarCaminos(); });
 
@@ -1079,6 +1098,15 @@
   function pintarSoftware() {
     const hay = OPC.some(o => camino[o.k]);
     $('#software').innerHTML = SOFT.filter(s => !hay || s.ver(camino)).map(s => `<a href="${s.url}" target="_blank" rel="noopener" class="card herr" style="border-top-color:${s.c}"><span class="fila"><b style="color:${s.c}">${s.t}</b><span aria-hidden="true">↗</span></span><span class="small">${esc(s.d)}</span><span class="sr">(se abre en una pestaña nueva)</span></a>`).join('');
+  }
+  function pintarRecursosAnalisis() {
+    const hay = OPC.some(o => camino[o.k]);
+    const recursos = [
+      { t: 'Recurso Cuantitativo', d: 'Analizar tu base en Jamovi y presentar los resultados.', url: './Recurso Cuantitativo.dc.html', c: 'var(--verde)', visible: !hay || camino.encuesta },
+      { t: 'Recurso Cualitativo', d: 'Codificar en Atlas.ti y presentar los resultados.', url: './Recurso Cualitativo.dc.html', c: 'var(--azul)', visible: !hay || camino.entrevista || camino.focal },
+      { t: 'Triangulación', d: 'Si aplicaste dos o más instrumentos, cruza los resultados al final.', url: './Recurso Triangulacion.html', c: 'var(--morado)', visible: !hay || OPC.filter(o => camino[o.k]).length > 1 },
+    ];
+    $('#recursosAnalisis').innerHTML = recursos.filter(r => r.visible).map(r => `<a class="card" href="${r.url}" style="border-top-color:${r.c};text-decoration:none"><p class="card-t" style="color:${r.c}">${r.t}</p><p class="txt">${r.d}</p></a>`).join('');
   }
 
   /* ---------- lista ---------- */
