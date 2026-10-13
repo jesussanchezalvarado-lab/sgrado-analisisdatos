@@ -436,18 +436,18 @@
         <span class="sr">(se abre en una pestaña nueva)</span>
       </a>
     </div>
-    <div class="aviso aviso-ambar" style="margin-top:16px"><p>Ambas herramientas entregan un primer borrador. Siempre debes escucharlo de nuevo, corregirlo y limpiarlo según el formato de la sección siguiente.</p></div>
+    <div class="aviso aviso-ambar" style="margin-top:16px"><p>Ambas herramientas entregan un primer borrador. Siempre debes escucharlo de nuevo, corregirlo y limpiarlo según el formato de la sección siguiente. Esto es solo para transcribir; cuando analices, utilizarás el programa Atlas.ti</p></div>
 
     <div class="sub" id="s3-3"><span class="num">3</span><h3>Consejos y formato</h3></div>
     <ul class="consejos" id="consejos"></ul>
     <details class="plegable">
       <summary>Ver ejemplo de transcripción</summary>
       <div class="ejemplo">
-        <p><strong>Entrevistador:</strong> ¿Cómo cambió su forma de evaluar durante la pandemia?</p>
-        <p><strong>Participante:</strong> Tuve que cambiar las pruebas escritas por trabajos en grupo, porque en línea no podía controlar que no se copiaran. Al principio me costó mucho, sobre todo con [inaudible], pero después los estudiantes se acostumbraron.</p>
-        <p><strong>Entrevistador:</strong> ¿Y cómo entregaba la retroalimentación?</p>
+        <p>Entrevistador: ¿Cómo cambió su forma de evaluar durante la pandemia?</p>
+        <p>Participante: Tuve que cambiar las pruebas escritas por trabajos en grupo, porque en línea no podía controlar que no se copiaran. Al principio me costó mucho, sobre todo con [inaudible], pero después los estudiantes se acostumbraron.</p>
+        <p>Entrevistador: ¿Y cómo entregaba la retroalimentación?</p>
       </div>
-      <p>Archivo <strong>E1CM1.docx</strong>. Una etiqueta por turno de habla, sin negritas en el resto del texto, e [inaudible] donde la grabación no se entiende. Acá se muestran las etiquetas en negrita solo para que se vean; en tu archivo van sin negrita.</p>
+      <p>Archivo <strong>E1CM1.docx</strong>. Al inicio de cada párrafo, escribe quién habla y luego dos puntos. Usa [inaudible] donde la grabación no se entiende. No uses negritas.</p>
     </details>
     <details class="plegable">
       <summary>Si es un grupo focal</summary>
@@ -460,10 +460,10 @@
       </ul>
       <p>Ejemplo inventado solo para ilustrar.</p>
       <div class="ejemplo">
-        <p><strong>Moderador:</strong> ¿Cómo cambió su forma de evaluar durante la pandemia?</p>
-        <p><strong>P2:</strong> Yo pasé de las pruebas escritas a trabajos en grupo, porque en línea era difícil controlar la copia.</p>
-        <p><strong>P3:</strong> Yo mantuve la prueba, pero le puse tiempo limitado. [habla simultánea]</p>
-        <p><strong>P1:</strong> A mí me pasó parecido, sobre todo con la copia.</p>
+        <p>Moderador: ¿Cómo cambió su forma de evaluar durante la pandemia?</p>
+        <p>P2: Yo pasé de las pruebas escritas a trabajos en grupo, porque en línea era difícil controlar la copia.</p>
+        <p>P3: Yo mantuve la prueba, pero le puse tiempo limitado. [habla simultánea]</p>
+        <p>P1: A mí me pasó parecido, sobre todo con la copia.</p>
       </div>
     </details>
 
@@ -529,7 +529,7 @@
     <div class="espacio">
       <div>
         <label for="txt" class="sr">Texto de la transcripción</label>
-        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Cada turno en su propio párrafo, con su etiqueta (Entrevistador: / Participante:)."></textarea>
+        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Cada párrafo comienza con quién habla y dos puntos (Entrevistador: / Participante:)."></textarea>
         <p class="small" style="margin:8px 0 0">Al pegar, se elimina automáticamente el formato (negritas, colores, tipografías). Solo queda el texto. Los cambios se guardan solos en este navegador.</p>
       </div>
       <div class="panel" aria-live="polite"><h4>Revisión</h4><div id="panel"></div></div>
@@ -668,7 +668,7 @@
   $('#tipos').innerHTML = TIPOS.map(t => `<div class="card" style="padding:0;overflow:hidden;border-top-width:1px;border-color:${t[1]}"><div class="caso-h" style="background:${t[1]}"><h3>${esc(t[0])}</h3></div><div class="caso-b"><p class="small" style="margin:0 0 12px">${esc(t[2])}</p><p style="font-size:14px;line-height:1.55;margin:0;font-style:italic">"${esc(t[3])}"</p></div></div>`).join('');
 
   const CONSEJOS = [
-    'Usa etiquetas claras para indicar quién habla, al inicio de cada turno: "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:" y "P1:", "P2:", una por persona).',
+    'Al inicio de cada párrafo, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:", "P1:", "P2:", etc.).',
     'Guarda un archivo Word por entrevistado y nómbralo con su código (por ejemplo, E1CM1.docx).',
     'Si una parte no se entiende, escribe [inaudible] y sigue. No completes con lo que crees que dijo.',
     'Omite muletillas (eh, o sea, este), repeticiones y sonidos, pero conserva las palabras propias de la persona.',
