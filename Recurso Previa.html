@@ -197,6 +197,7 @@
   @media(min-width:861px){.espacio .panel{position:sticky;top:68px;max-height:calc(100vh - 92px);overflow:auto}}
   .qz{margin:0 0 18px}.qz p.q{font-weight:600;margin:0 0 10px}
   .qz .q-ej{margin:0 0 12px;padding:10px 12px;background:var(--gris-claro);border-left:3px solid var(--azul);border-radius:4px;font-size:14px;line-height:1.5}
+  .modo-transcripcion[hidden]{display:none!important}
   .qz .op{display:block;width:100%;text-align:left;min-height:44px;margin:0 0 8px;padding:10px 14px;border:1.5px solid #c9d1d9;border-radius:8px;background:#fff;font:14.5px 'Open Sans',sans-serif;color:var(--texto);cursor:pointer}
   .qz .op:hover{border-color:var(--azul)}
   .qz .op.ok{border-color:var(--verde);background:var(--verde-claro)}
@@ -441,7 +442,7 @@
 
     <div class="sub" id="s3-3"><span class="num">3</span><h3>Consejos y formato</h3></div>
     <ul class="consejos" id="consejos"></ul>
-    <details class="plegable">
+    <details class="plegable modo-transcripcion" data-modo-transcripcion="entrevista">
       <summary>Ver ejemplo de transcripción</summary>
       <div class="ejemplo">
         <p>Entrevistador: ¿Cómo cambió su forma de evaluar durante la pandemia?</p>
@@ -450,14 +451,14 @@
       </div>
       <p>Archivo <strong>E1CM1.docx</strong>. Al inicio de cada línea, escribe quién habla y luego dos puntos. Usa [inaudible] donde la grabación no se entiende. No uses negritas.</p>
     </details>
-    <details class="plegable">
-      <summary>Si es un grupo focal</summary>
-      <p>Hay varias personas hablando en la misma grabación, así que cada una necesita su propia etiqueta.</p>
+    <details class="plegable modo-transcripcion" data-modo-transcripcion="focal">
+      <summary>Ejemplo de grupo focal</summary>
+      <p>En una misma grabación intervienen el moderador y varias personas. Identifica a quien modera como «Moderador» y a cada participante con un código estable: P1, P2, P3…</p>
       <ul>
         <li>Usa "Moderador:" para quien conduce y "P1:", "P2:", "P3:"… para cada participante. Cada persona conserva su número durante toda la transcripción.</li>
         <li>Un archivo por grupo focal, nombrado con su código (por ejemplo, F1.docx). Al citar, se unen ambos códigos: F1P2.</li>
         <li>Si dos personas hablan a la vez y no se distingue, escribe [habla simultánea] y sigue.</li>
-        <li>Un turno por línea, igual que en la entrevista. No mezcles lo que dijeron dos personas bajo una sola etiqueta.</li>
+        <li>Escribe cada intervención en una línea distinta. Si varias personas hablan a la vez y no puedes distinguirlas, marca [habla simultánea].</li>
       </ul>
       <p>Ejemplo inventado solo para ilustrar.</p>
       <div class="ejemplo">
@@ -475,16 +476,18 @@
         <caption class="sr">Errores frecuentes en transcripciones, con ejemplos reales y cómo corregirlos</caption>
         <thead><tr><th scope="col" style="width:20%">Error</th><th scope="col" style="width:45%">Así apareció</th><th scope="col">Qué hacer</th></tr></thead>
         <tbody>
-          <tr><td><strong>Iniciales o nombres en las etiquetas</strong></td><td>"A: Bueno, mucho gusto. Yo soy [nombre]…"<br>"F: Ya."</td><td>Usa "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:" y "P1:", "P2:"). Identifica al informante solo con su código (por ejemplo, E1PH) y reemplaza nombres de personas y colegios por [nombre] o [establecimiento].</td></tr>
+          <tr class="modo-transcripcion" data-modo-transcripcion="entrevista"><td><strong>Nombres en lugar de roles</strong></td><td>"A: Bueno, mucho gusto. Yo soy [nombre]…"<br>"F: Ya."</td><td>Usa "Entrevistador:" y "Participante:". Reemplaza los nombres de personas y establecimientos por [nombre] o [establecimiento].</td></tr>
+          <tr class="modo-transcripcion" data-modo-transcripcion="focal"><td><strong>Nombres en lugar de códigos</strong></td><td>"Moderador: ¿Qué opinan? Camila: Yo prefiero trabajar en grupo."</td><td>Identifica a quien modera como "Moderador" y asigna a cada participante un código estable ("P1", "P2"…). Reemplaza nombres de personas y establecimientos por [nombre] o [establecimiento].</td></tr>
           <tr><td><strong>Muletillas y repeticiones</strong></td><td>"…ordenar los contenidos, <u>cierto</u>, como dije anteriormente, también ayuda <u>como</u> a darle el sentido lógico, <u>cierto</u> a las clases…"</td><td>Quítalas sin cambiar las palabras de la persona.</td></tr>
           <tr><td><strong>Palabras mal reconocidas por la herramienta</strong></td><td>"…cuando es la formación <u>universaria</u>…"<br>"Que les vaya muy <u>viendo</u>…"</td><td>Escucha de nuevo ese tramo. Si confirmas la palabra, corrígela ("universitaria"). Si no se entiende, escribe [inaudible].</td></tr>
-          <tr><td><strong>Dos turnos de habla en una misma línea</strong></td><td>"A: ¿Cómo guían a los estudiantes durante el proceso? <u>F: Como no hay un formato específico para el área, les vamos mostrando qué hacer en cada etapa.</u>"</td><td>Empieza una línea nueva cada vez que cambia quién habla.</td></tr>
+          <tr class="modo-transcripcion" data-modo-transcripcion="entrevista"><td><strong>Dos turnos de habla en una misma línea</strong></td><td>"A: ¿Cómo guían a los estudiantes durante el proceso? <u>F: Como no hay un formato específico para el área, les vamos mostrando qué hacer en cada etapa.</u>"</td><td>Empieza una línea nueva cada vez que cambia quién habla.</td></tr>
+          <tr class="modo-transcripcion" data-modo-transcripcion="focal"><td><strong>Varias intervenciones en una misma línea</strong></td><td>"Moderador: ¿Qué opinan? <u>P1: Me sirve trabajar en grupo. P2: Yo prefiero hacerlo individualmente.</u>"</td><td>Empieza una línea nueva para cada intervención. Mantén el mismo código (P1, P2…) durante toda la transcripción.</td></tr>
           <tr><td><strong>Respuestas cortadas</strong></td><td>"…el propio uso del lenguaje a veces puede ponerte en problemas y también <u>condicion</u>"</td><td>Vuelve a la grabación y completa la frase. Si el audio se corta, marca [inaudible].</td></tr>
         </tbody>
       </table>
     </div>
     <h3 class="h3">Antes y después</h3>
-    <div class="grid">
+    <div class="grid modo-transcripcion" data-modo-transcripcion="entrevista">
       <div class="card" style="border-top-color:var(--rojo)">
         <p class="card-t" style="color:var(--rojo)">✗ Borrador sin revisar</p>
         <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">A: ¿Consideras que la planificación es una guía útil o más bien un requisito administrativo?</p>
@@ -501,7 +504,25 @@
         <p style="font-size:14.5px;line-height:1.6;margin:0">Considero que son ambas cosas, porque al hacer el ejercicio de ordenar los contenidos, como dije anteriormente, también ayuda a darle el sentido lógico a las clases, al contenido.</p>
       </div>
     </div>
-    <p class="small" style="margin:10px 0 0">E1PH = Entrevistado 1, Pedagogía en Historia. Fíjate en que la versión limpia no cambia el vocabulario de la persona. Ejemplo con datos de un caso real, ya anonimizado.</p>
+    <p class="small modo-transcripcion" data-modo-transcripcion="entrevista" style="margin:10px 0 0">E1PH = Entrevistado 1, Pedagogía en Historia. Ejemplo anonimizado. La transcripción limpia conserva las palabras de la persona y pone cada intervención en una línea.</p>
+    <div class="grid modo-transcripcion" data-modo-transcripcion="focal">
+      <div class="card" style="border-top-color:var(--rojo)">
+        <p class="card-t" style="color:var(--rojo)">✗ Grupo focal sin ordenar</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0">Moderador: ¿Qué les ayudó a organizar el trabajo? P1 (Camila): Repartir las tareas. P2 (Nicole): A mí me sirvió acordar fechas.</p>
+      </div>
+      <div class="card" style="border-top-color:var(--verde)">
+        <p class="card-t" style="color:var(--verde)">✓ Transcripción limpia · F1.docx</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">Moderador: ¿Qué les ayudó a organizar el trabajo?</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">P1: Repartir las tareas.</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0">P2: A mí me sirvió acordar fechas.</p>
+      </div>
+      <div class="card" style="border-top-color:var(--azul)">
+        <p class="card-t" style="color:var(--azul)">→ Cita para el análisis</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">«Repartir las tareas» (F1P1)</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0">F1 identifica el grupo focal y P1 a quien dijo la cita.</p>
+      </div>
+    </div>
+    <p class="small modo-transcripcion" data-modo-transcripcion="focal" style="margin:10px 0 0">En el archivo F1.docx, conserva el código de cada participante durante toda la transcripción. Para citar, combina el código del grupo y el de la persona: F1P1, F1P2, etc.</p>
 
     <!-- ESPACIO DE TRABAJO -->
     <details class="plegable">
@@ -518,7 +539,7 @@
     </div>
 
     <div class="campos">
-      <label for="codigo">Código asignado a entrevistada/o<input id="codigo" type="text" maxlength="20" placeholder="Ej. E1CM1 o F1" autocomplete="off"></label>
+      <label for="codigo"><span id="lblCodigoArchivo">Código del archivo</span><input id="codigo" type="text" maxlength="20" placeholder="Ej. E1CM1" autocomplete="off"></label>
       <label for="tipoT">Tipo<select id="tipoT"><option value="entrevista">Entrevista</option><option value="focal">Grupo focal</option></select></label>
     </div>
 
@@ -530,7 +551,7 @@
     <div class="espacio">
       <div>
         <label for="txt" class="sr">Texto de la transcripción</label>
-        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Cada línea comienza con quién habla y dos puntos (Entrevistador: / Participante:)."></textarea>
+        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Una intervención por línea: Entrevistador: / Participante:."></textarea>
         <p class="small" style="margin:8px 0 0">Al pegar, se elimina automáticamente el formato (negritas, colores, tipografías). Solo queda el texto. Los cambios se guardan solos en este navegador.</p>
       </div>
       <div class="panel" aria-live="polite"><h4>Revisión</h4><div id="panel"></div></div>
@@ -1296,7 +1317,19 @@
   const programar = () => { clearTimeout(timer); timer = setTimeout(render, 150); };
   ta.addEventListener('input', programar);
   ta.addEventListener('paste', () => { setTimeout(render, 0); });
-  $('#tipoT').addEventListener('change', () => { msgT.textContent = ''; selLab = {}; render(); });
+  function pintarModoTranscripcion() {
+    const focal = $('#tipoT').value === 'focal';
+    $$('[data-modo-transcripcion]').forEach(el => { el.hidden = el.dataset.modoTranscripcion !== (focal ? 'focal' : 'entrevista'); });
+    $('#lblCodigoArchivo').textContent = focal ? 'Código del grupo focal' : 'Código de la entrevista';
+    ta.placeholder = focal
+      ? 'Pega aquí la transcripción. Cada línea comienza con Moderador o con el código estable de una persona (P1, P2, etc.).'
+      : 'Pega aquí la transcripción. Cada línea comienza con quién habla y dos puntos (Entrevistador: / Participante:).';
+    const consejo = $('#consejos li span:nth-child(2)');
+    consejo.textContent = focal
+      ? 'En cada línea, escribe "Moderador:" o el código estable de quien habla ("P1:", "P2:", etc.). Usa un archivo por grupo focal y conserva los códigos al citar (por ejemplo, F1P2).'
+      : 'Al inicio de cada línea, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:".';
+  }
+  $('#tipoT').addEventListener('change', () => { msgT.textContent = ''; selLab = {}; pintarModoTranscripcion(); render(); });
 
   function setTexto(nuevo, selIdx) {
     ta.value = nuevo; render();
@@ -1436,33 +1469,38 @@
     }).catch(() => { msgT.className = 'msg err'; msgT.textContent = 'No se pudo generar la plantilla.'; });
   });
 
-  pintarCaminos(); restaurarT(); render();
+  pintarCaminos(); restaurarT(); pintarModoTranscripcion(); render();
   const m = /^#v([1-4])$/.exec(location.hash || '');
   mostrar(m ? +m[1] : 1, false);
 })();
 </script>
 <script>
 (function(){
-  var Q=[
-  {p:'"…cuando es la formación universaria, por lo general siempre es como el ideal…" La herramienta escribió "universaria". ¿Qué haces?',o:['Lo dejo así, es lo que transcribió la herramienta','Escucho de nuevo ese tramo y, si dijo "universitaria", lo corrijo','Borro la frase completa','Lo reemplazo por una palabra que suene parecida'],c:1,e:'Si al escuchar confirmas la palabra, se corrige. Si no se entiende, se marca [inaudible]. Nunca se adivina.',error:'Vuelve a escuchar el fragmento: confirma la palabra en la grabación, no la corrijas por intuición.'},
-  {p:'¿Qué problema tiene esta transcripción?',ej:'Juan Pérez (entrevistador): ¿Ustedes les van mostrando un formato de planificación? Nicole Moreno (Entrevistada): No, no nos dan uno, pero depende del profesor (...).',o:['1. Tiene muletillas','2. Mezcla dos turnos de habla en un misma línea','3. No utiliza códigos (y revela identidad)','4. 2 y 3 son correctas'],c:3,e:'Son dos problemas: las intervenciones están juntas en una misma línea y aparecen nombres en vez de códigos, lo que puede revelar la identidad. Separa las intervenciones y usa etiquetas como Entrevistador y Participante.',error:'Revisa dos aspectos por separado: si las intervenciones están juntas en una línea y si se usan nombres en lugar de códigos.'}
-  ];
+  var primera={p:'"…cuando es la formación universaria, por lo general siempre es como el ideal…" La herramienta escribió "universaria". ¿Qué haces?',o:['Lo dejo así, es lo que transcribió la herramienta','Escucho de nuevo ese tramo y, si dijo "universitaria", lo corrijo','Borro la frase completa','Lo reemplazo por una palabra que suene parecida'],c:1,e:'Si al escuchar confirmas la palabra, se corrige. Si no se entiende, se marca [inaudible]. Nunca se adivina.',error:'Vuelve a escuchar el fragmento: confirma la palabra en la grabación, no la corrijas por intuición.'};
+  var entrevista={p:'¿Qué problemas tiene esta transcripción?',ej:'Juan Pérez (entrevistador): ¿Ustedes les van mostrando un formato de planificación? Nicole Moreno (Entrevistada): No, no nos dan uno, pero depende del profesor (...).',o:['1. Tiene muletillas','2. Mezcla dos turnos de habla en una misma línea','3. No utiliza códigos y revela identidades','4. 2 y 3 son correctas'],c:3,e:'Se mezclan dos problemas: las intervenciones están juntas en una línea y aparecen nombres en vez de códigos. Separa las intervenciones y usa "Entrevistador:" y "Participante:".',error:'Revisa por separado si las intervenciones están juntas y si aparecen nombres en lugar de roles.'};
+  var grupoFocal={p:'¿Qué problemas tiene esta transcripción?',ej:'Moderador: ¿Qué opinan? Camila: Me sirve trabajar en grupo. Nicole: Yo prefiero hacerlo sola.',o:['1. Tiene muletillas','2. Junta varias intervenciones en una línea','3. Usa nombres en vez de códigos para identificar a las personas','4. 2 y 3 son correctas'],c:3,e:'Se mezclan varias intervenciones en una línea y aparecen nombres en vez de códigos. Pon cada intervención en una línea y usa "Moderador:", "P1:", "P2:"…; conserva el código al citar, por ejemplo F1P2.',error:'Revisa si cada intervención está en su propia línea y si las personas están identificadas con códigos estables (P1, P2…), no con sus nombres.'};
   var box=document.getElementById('qz'); if(!box) return;
-  Q.forEach(function(q,i){
-    var d=document.createElement('div'); d.className='qz';
-    var h='<p class="q">'+(i+1)+'. '+q.p.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
-    if(q.ej) h+='<p class="q-ej">'+q.ej.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
-    q.o.forEach(function(t,j){h+='<button type="button" class="op" data-j="'+j+'">'+t+'</button>';});
-    h+='<p class="fb" role="status" aria-live="polite"></p>';
-    d.innerHTML=h; box.appendChild(d);
-    d.addEventListener('click',function(e){
-      var b=e.target.closest('.op'); if(!b) return;
-      var j=+b.dataset.j, fb=d.querySelector('.fb');
-      d.querySelectorAll('.op').forEach(function(x){x.classList.remove('ok','mal');});
-      if(j===q.c){b.classList.add('ok'); fb.textContent='Correcto. '+q.e;}
-      else{b.classList.add('mal'); fb.textContent='Revisa la explicación: '+(q.error||'Vuelve a mirar el ejemplo e inténtalo de nuevo.');}
+  function pintarQuiz(){
+    var q2=document.getElementById('tipoT').value==='focal'?grupoFocal:entrevista;
+    box.replaceChildren();
+    [primera,q2].forEach(function(q,i){
+      var d=document.createElement('div'); d.className='qz';
+      var h='<p class="q">'+(i+1)+'. '+q.p.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
+      if(q.ej) h+='<p class="q-ej">'+q.ej.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
+      q.o.forEach(function(t,j){h+='<button type="button" class="op" data-j="'+j+'">'+t+'</button>';});
+      h+='<p class="fb" role="status" aria-live="polite"></p>';
+      d.innerHTML=h; box.appendChild(d);
+      d.addEventListener('click',function(e){
+        var b=e.target.closest('.op'); if(!b) return;
+        var j=+b.dataset.j, fb=d.querySelector('.fb');
+        d.querySelectorAll('.op').forEach(function(x){x.classList.remove('ok','mal');});
+        if(j===q.c){b.classList.add('ok'); fb.textContent='Correcto. '+q.e;}
+        else{b.classList.add('mal'); fb.textContent='Revisa la explicación: '+q.error;}
+      });
     });
-  });
+  }
+  document.getElementById('tipoT').addEventListener('change',pintarQuiz);
+  pintarQuiz();
 })();
 </script>
 <script>
