@@ -448,7 +448,7 @@
         <p>Participante: Tuve que cambiar las pruebas escritas por trabajos en grupo, porque en línea no podía controlar que no se copiaran. Al principio me costó mucho, sobre todo con [inaudible], pero después los estudiantes se acostumbraron.</p>
         <p>Entrevistador: ¿Y cómo entregaba la retroalimentación?</p>
       </div>
-      <p>Archivo <strong>E1CM1.docx</strong>. Al inicio de cada párrafo, escribe quién habla y luego dos puntos. Usa [inaudible] donde la grabación no se entiende. No uses negritas.</p>
+      <p>Archivo <strong>E1CM1.docx</strong>. Al inicio de cada línea, escribe quién habla y luego dos puntos. Usa [inaudible] donde la grabación no se entiende. No uses negritas.</p>
     </details>
     <details class="plegable">
       <summary>Si es un grupo focal</summary>
@@ -457,7 +457,7 @@
         <li>Usa "Moderador:" para quien conduce y "P1:", "P2:", "P3:"… para cada participante. Cada persona conserva su número durante toda la transcripción.</li>
         <li>Un archivo por grupo focal, nombrado con su código (por ejemplo, F1.docx). Al citar, se unen ambos códigos: F1P2.</li>
         <li>Si dos personas hablan a la vez y no se distingue, escribe [habla simultánea] y sigue.</li>
-        <li>Un turno por párrafo, igual que en la entrevista. No mezcles lo que dijeron dos personas bajo una sola etiqueta.</li>
+        <li>Un turno por línea, igual que en la entrevista. No mezcles lo que dijeron dos personas bajo una sola etiqueta.</li>
       </ul>
       <p>Ejemplo inventado solo para ilustrar.</p>
       <div class="ejemplo">
@@ -478,7 +478,7 @@
           <tr><td><strong>Iniciales o nombres en las etiquetas</strong></td><td>"A: Bueno, mucho gusto. Yo soy [nombre]…"<br>"F: Ya."</td><td>Usa "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:" y "P1:", "P2:"). Identifica al informante solo con su código (por ejemplo, E1PH) y reemplaza nombres de personas y colegios por [nombre] o [establecimiento].</td></tr>
           <tr><td><strong>Muletillas y repeticiones</strong></td><td>"…ordenar los contenidos, <u>cierto</u>, como dije anteriormente, también ayuda <u>como</u> a darle el sentido lógico, <u>cierto</u> a las clases…"</td><td>Quítalas sin cambiar las palabras de la persona.</td></tr>
           <tr><td><strong>Palabras mal reconocidas por la herramienta</strong></td><td>"…cuando es la formación <u>universaria</u>…"<br>"Que les vaya muy <u>viendo</u>…"</td><td>Escucha de nuevo ese tramo. Si confirmas la palabra, corrígela ("universitaria"). Si no se entiende, escribe [inaudible].</td></tr>
-          <tr><td><strong>Dos personas en un mismo párrafo</strong></td><td>"A: ¿Cómo guían a los estudiantes durante el proceso? <u>F: Como no hay un formato específico para el área, les vamos mostrando qué hacer en cada etapa.</u>"</td><td>Empieza un párrafo nuevo cada vez que cambia quién habla.</td></tr>
+          <tr><td><strong>Dos turnos de habla en una misma línea</strong></td><td>"A: ¿Cómo guían a los estudiantes durante el proceso? <u>F: Como no hay un formato específico para el área, les vamos mostrando qué hacer en cada etapa.</u>"</td><td>Empieza una línea nueva cada vez que cambia quién habla.</td></tr>
           <tr><td><strong>Respuestas cortadas</strong></td><td>"…el propio uso del lenguaje a veces puede ponerte en problemas y también <u>condicion</u>"</td><td>Vuelve a la grabación y completa la frase. Si el audio se corta, marca [inaudible].</td></tr>
         </tbody>
       </table>
@@ -530,7 +530,7 @@
     <div class="espacio">
       <div>
         <label for="txt" class="sr">Texto de la transcripción</label>
-        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Cada párrafo comienza con quién habla y dos puntos (Entrevistador: / Participante:)."></textarea>
+        <textarea id="txt" spellcheck="false" placeholder="Pega aquí tu transcripción. Cada línea comienza con quién habla y dos puntos (Entrevistador: / Participante:)."></textarea>
         <p class="small" style="margin:8px 0 0">Al pegar, se elimina automáticamente el formato (negritas, colores, tipografías). Solo queda el texto. Los cambios se guardan solos en este navegador.</p>
       </div>
       <div class="panel" aria-live="polite"><h4>Revisión</h4><div id="panel"></div></div>
@@ -669,7 +669,7 @@
   $('#tipos').innerHTML = TIPOS.map(t => `<div class="card" style="padding:0;overflow:hidden;border-top-width:1px;border-color:${t[1]}"><div class="caso-h" style="background:${t[1]}"><h3>${esc(t[0])}</h3></div><div class="caso-b"><p class="small" style="margin:0 0 12px">${esc(t[2])}</p><p style="font-size:14px;line-height:1.55;margin:0;font-style:italic">"${esc(t[3])}"</p></div></div>`).join('');
 
   const CONSEJOS = [
-    'Al inicio de cada párrafo, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:", "P1:", "P2:", etc.).',
+    'Al inicio de cada línea, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:", "P1:", "P2:", etc.).',
     'Guarda un archivo Word por entrevistado y nómbralo con su código (por ejemplo, E1CM1.docx).',
     'Si una parte no se entiende, escribe [inaudible] y sigue. No completes con lo que crees que dijo.',
     'Omite muletillas (eh, o sea, este), repeticiones y sonidos, pero conserva las palabras propias de la persona.',
@@ -1132,7 +1132,7 @@
     { id: 'cuali', t: 'Entrevistas y grupo focal', visible: c => c.entrevista || c.focal, items: [
       'Transcribiste el 100 % de cada grabación.',
       'Corregiste cada transcripción escuchando la grabación.',
-      'Usas etiquetas claras (Entrevistador y Participante, o Moderador y P1, P2) y un turno por párrafo.',
+      'Usas etiquetas claras (Entrevistador y Participante, o Moderador y P1, P2) y un turno por línea.',
       'Donde no se entiende, dice [inaudible] y no hay palabras inventadas.',
       'Hay un archivo Word por informante, o por grupo focal, con su código.',
       'Hiciste una copia de trabajo de cada archivo, con las preguntas como título, y el original no se toca.',
@@ -1223,14 +1223,14 @@
         `<button class="mini-btn" type="button" data-act="noetiqueta" data-arg="${esc(lab)}">No es una etiqueta</button>`);
     });
 
-    // dos turnos en un párrafo
+    // dos turnos en una línea
     const conocidas = Array.from(new Set(info.filter(x => x.kind === 'std' || x.kind === 'otra').map(x => x.label)));
     let mezclados = 0;
     if (conocidas.length) {
       const re = new RegExp('\\S[ \\t]+(?:' + conocidas.map(escRe).join('|') + '):[ \\t]');
       info.forEach(x => { if (re.test(x.rest)) mezclados++; });
     }
-    if (mezclados) fila('⚠️', `<strong>${mezclados}</strong> párrafo(s) con dos turnos en la misma línea. Cada turno debe ir en su propio párrafo.`, '<button class="mini-btn" type="button" data-act="separar">Separar turnos</button>');
+    if (mezclados) fila('⚠️', `<strong>${mezclados}</strong> línea(s) con dos turnos en la misma línea. Cada turno debe ir en su propia línea.`, '<button class="mini-btn" type="button" data-act="separar">Separar turnos</button>');
 
     // sin etiqueta
     if (sinEt.length) {
@@ -1418,7 +1418,7 @@
     const etiquetas = focal ? ['Moderador', 'P1', 'P2', 'P1', 'P3', 'P2'] : ['Entrevistador', 'Participante', 'Entrevistador', 'Participante', 'Entrevistador', 'Participante'];
     const instr = [
       'Plantilla de transcripción · Código del archivo: ________',
-      'Un turno por párrafo, con su etiqueta al comienzo. Escribe tal como se dijo, sin muletillas ni repeticiones. Marca [inaudible] donde no se entienda.',
+      'Un turno por línea, con su etiqueta al comienzo. Escribe tal como se dijo, sin muletillas ni repeticiones. Marca [inaudible] donde no se entienda.',
       'Cambia los nombres de personas y establecimientos por [nombre] y [establecimiento]. Este encabezado no se copia al pegar el texto en la página.',
     ];
     const run = (t, extra) => new TextRun(Object.assign({ text: t, font: 'Calibri', size: 22, bold: false }, extra || {}));
@@ -1445,7 +1445,7 @@
 (function(){
   var Q=[
   {p:'"…cuando es la formación universaria, por lo general siempre es como el ideal…" La herramienta escribió "universaria". ¿Qué haces?',o:['Lo dejo así, es lo que transcribió la herramienta','Escucho de nuevo ese tramo y, si dijo "universitaria", lo corrijo','Borro la frase completa','Lo reemplazo por una palabra que suene parecida'],c:1,e:'Si al escuchar confirmas la palabra, se corrige. Si no se entiende, se marca [inaudible]. Nunca se adivina.',error:'Vuelve a escuchar el fragmento: confirma la palabra en la grabación, no la corrijas por intuición.'},
-  {p:'¿Qué problema tiene esta transcripción?',ej:'Juan Pérez (entrevistador): ¿Ustedes les van mostrando un formato de planificación? Nicole Moreno (Entrevistada): No, no nos dan uno, pero depende del profesor (...).',o:['1. Tiene muletillas','2. Mezcla dos turnos de habla en un mismo párrafo','3. No utiliza códigos (y revela identidad)','4. 2 y 3 son correctas'],c:3,e:'Son dos problemas: las intervenciones están juntas en un párrafo y aparecen nombres en vez de códigos, lo que puede revelar la identidad. Separa las intervenciones y usa etiquetas como Entrevistador y Participante.',error:'Revisa dos aspectos por separado: si las intervenciones están juntas en un párrafo y si se usan nombres en lugar de códigos.'}
+  {p:'¿Qué problema tiene esta transcripción?',ej:'Juan Pérez (entrevistador): ¿Ustedes les van mostrando un formato de planificación? Nicole Moreno (Entrevistada): No, no nos dan uno, pero depende del profesor (...).',o:['1. Tiene muletillas','2. Mezcla dos turnos de habla en un misma línea','3. No utiliza códigos (y revela identidad)','4. 2 y 3 son correctas'],c:3,e:'Son dos problemas: las intervenciones están juntas en una misma línea y aparecen nombres en vez de códigos, lo que puede revelar la identidad. Separa las intervenciones y usa etiquetas como Entrevistador y Participante.',error:'Revisa dos aspectos por separado: si las intervenciones están juntas en una línea y si se usan nombres en lugar de códigos.'}
   ];
   var box=document.getElementById('qz'); if(!box) return;
   Q.forEach(function(q,i){
