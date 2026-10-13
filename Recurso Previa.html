@@ -457,7 +457,6 @@
       <ul>
         <li>Usa "Moderador:" para quien conduce y "P1:", "P2:", "P3:"… para cada participante. Cada persona conserva su número durante toda la transcripción.</li>
         <li>Un archivo por grupo focal, nombrado con su código (por ejemplo, F1.docx). Al citar, se unen ambos códigos: F1P2.</li>
-        <li>Si dos personas hablan a la vez y no se distingue, escribe [habla simultánea] y sigue.</li>
         <li>Escribe cada intervención en una línea distinta. Si varias personas hablan a la vez y no puedes distinguirlas, marca [habla simultánea].</li>
       </ul>
       <p>Ejemplo inventado solo para ilustrar.</p>
@@ -1321,6 +1320,7 @@
     const focal = $('#tipoT').value === 'focal';
     $$('[data-modo-transcripcion]').forEach(el => { el.hidden = el.dataset.modoTranscripcion !== (focal ? 'focal' : 'entrevista'); });
     $('#lblCodigoArchivo').textContent = focal ? 'Código del grupo focal' : 'Código de la entrevista';
+    $('#codigo').placeholder = focal ? 'Ej. F1' : 'Ej. E1CM1';
     ta.placeholder = focal
       ? 'Pega aquí la transcripción. Cada línea comienza con Moderador o con el código estable de una persona (P1, P2, etc.).'
       : 'Pega aquí la transcripción. Cada línea comienza con quién habla y dos puntos (Entrevistador: / Participante:).';
