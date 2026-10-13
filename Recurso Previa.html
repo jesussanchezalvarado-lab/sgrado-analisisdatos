@@ -198,6 +198,10 @@
   .qz{margin:0 0 18px}.qz p.q{font-weight:600;margin:0 0 10px}
   .qz .q-ej{margin:0 0 12px;padding:10px 12px;background:var(--gris-claro);border-left:3px solid var(--azul);border-radius:4px;font-size:14px;line-height:1.5}
   .modo-transcripcion[hidden]{display:none!important}
+  .modo-sel{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 6px;padding:12px 14px;border:1px solid var(--borde);border-radius:10px;background:#fff}
+  .modo-sel #lblModo{font:700 14px 'Open Sans',sans-serif;color:var(--texto)}
+  .modo-sel .mini-btn[aria-pressed="true"]{background:var(--azul);border-color:var(--azul);color:#fff}
+  .modo-sel .small{flex-basis:100%;margin:0}
   .qz .op{display:block;width:100%;text-align:left;min-height:44px;margin:0 0 8px;padding:10px 14px;border:1.5px solid #c9d1d9;border-radius:8px;background:#fff;font:14.5px 'Open Sans',sans-serif;color:var(--texto);cursor:pointer}
   .qz .op:hover{border-color:var(--azul)}
   .qz .op.ok{border-color:var(--verde);background:var(--verde-claro)}
@@ -410,6 +414,7 @@
     </div>
     <ul class="subnav no-print" aria-label="Pasos de esta vista"><li><a href="#s3-1"><b>1</b>Elige el tipo de transcripción</a></li><li><a href="#s3-2"><b>2</b>Transcribe con una herramienta y revisa</a></li><li><a href="#s3-3"><b>3</b>Consejos y formato</a></li><li><a href="#s3-4"><b>4</b>Evita los errores más frecuentes</a></li><li><a href="#espacio"><b>5</b>Pega y ordena tu transcripción</a></li></ul>
     <p class="small" style="margin:0 0 6px"><a href="#espacio" data-salto="espacio">Ir directo al espacio de trabajo ↓</a></p>
+    <div class="modo-sel no-print" role="group" aria-labelledby="lblModo"><span id="lblModo">¿Qué vas a transcribir?</span><button type="button" class="mini-btn" data-modo="entrevista" aria-pressed="true">Entrevista</button><button type="button" class="mini-btn" data-modo="focal" aria-pressed="false">Grupo focal</button><span class="small">Los ejemplos, consejos y etiquetas (Entrevistador o Moderador) se ajustan a lo que elijas.</span></div>
 
     <h3 class="h3" style="margin-top:12px">¿Qué es transcribir?</h3>
     <p class="lead">Transcribir es pasar a texto escrito todo lo que se dijo en una entrevista o grupo focal grabado. El texto permite leer con calma, marcar fragmentos, compararlos entre participantes y citarlos de forma textual en tu escrito.</p>
@@ -506,22 +511,23 @@
     <p class="small modo-transcripcion" data-modo-transcripcion="entrevista" style="margin:10px 0 0">E1PH = Entrevistado 1, Pedagogía en Historia. Ejemplo anonimizado. La transcripción limpia conserva las palabras de la persona y pone cada intervención en una línea.</p>
     <div class="grid modo-transcripcion" data-modo-transcripcion="focal">
       <div class="card" style="border-top-color:var(--rojo)">
-        <p class="card-t" style="color:var(--rojo)">✗ Grupo focal sin ordenar</p>
-        <p style="font-size:14.5px;line-height:1.6;margin:0">Moderador: ¿Qué les ayudó a organizar el trabajo? P1 (Camila): Repartir las tareas. P2 (Nicole): A mí me sirvió acordar fechas.</p>
+        <p class="card-t" style="color:var(--rojo)">✗ Borrador sin revisar</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0">Moderador: ¿Qué les ayudó a organizar el trabajo en grupo? Camila: Eh, repartir las tareas, cierto, repartir las tareas. Nicole: A mí me sirvió como acordar fechas.</p>
       </div>
       <div class="card" style="border-top-color:var(--verde)">
-        <p class="card-t" style="color:var(--verde)">✓ Transcripción limpia · F1.docx</p>
-        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">Moderador: ¿Qué les ayudó a organizar el trabajo?</p>
+        <p class="card-t" style="color:var(--verde)">✓ Literal limpia (archivo F1.docx)</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">Moderador: ¿Qué les ayudó a organizar el trabajo en grupo?</p>
         <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">P1: Repartir las tareas.</p>
         <p style="font-size:14.5px;line-height:1.6;margin:0">P2: A mí me sirvió acordar fechas.</p>
       </div>
       <div class="card" style="border-top-color:var(--azul)">
-        <p class="card-t" style="color:var(--azul)">→ Cita para el análisis</p>
-        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">«Repartir las tareas» (F1P1)</p>
-        <p style="font-size:14.5px;line-height:1.6;margin:0">F1 identifica el grupo focal y P1 a quien dijo la cita.</p>
+        <p class="card-t" style="color:var(--azul)">→ Copia de trabajo para Atlas.ti</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">Pregunta 2: ¿Qué les ayudó a organizar el trabajo en grupo?</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0 0 8px">P1: Repartir las tareas.</p>
+        <p style="font-size:14.5px;line-height:1.6;margin:0">P2: A mí me sirvió acordar fechas.</p>
       </div>
     </div>
-    <p class="small modo-transcripcion" data-modo-transcripcion="focal" style="margin:10px 0 0">En el archivo F1.docx, conserva el código de cada participante durante toda la transcripción. Para citar, combina el código del grupo y el de la persona: F1P1, F1P2, etc.</p>
+    <p class="small modo-transcripcion" data-modo-transcripcion="focal" style="margin:10px 0 0">F1 = Grupo focal 1. Ejemplo anonimizado. La transcripción limpia conserva las palabras de cada participante y pone cada intervención en una línea. En la copia de trabajo, mantén los códigos P1, P2… para saber quién dijo cada cosa; al citar, combínalos con el del grupo: F1P1, F1P2.</p>
 
     <!-- ESPACIO DE TRABAJO -->
     <details class="plegable">
@@ -1323,18 +1329,25 @@
   ta.addEventListener('paste', () => { setTimeout(render, 0); });
   function pintarModoTranscripcion() {
     const focal = $('#tipoT').value === 'focal';
+    $$('.modo-sel [data-modo]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.modo === (focal ? 'focal' : 'entrevista'))));
     $$('[data-modo-transcripcion]').forEach(el => { el.hidden = el.dataset.modoTranscripcion !== (focal ? 'focal' : 'entrevista'); });
     $('#lblCodigoArchivo').textContent = focal ? 'Código del grupo focal' : 'Código de la entrevista';
     $('#codigo').placeholder = focal ? 'Ej. F1' : 'Ej. E1CM1';
     ta.placeholder = focal
       ? 'Pega aquí la transcripción. Cada línea comienza con Moderador o con el código estable de una persona (P1, P2, etc.).'
       : 'Pega aquí la transcripción. Cada línea comienza con quién habla y dos puntos (Entrevistador: / Participante:).';
-    const consejo = $('#consejos li span:nth-child(2)');
+    const consejo = $('#consejos li span:nth-child(2)'), archivo = $('#consejos li:nth-child(2) span:nth-child(2)');
+    archivo.textContent = focal ? 'Guarda un archivo Word por grupo focal y nómbralo con su código (por ejemplo, F1.docx).' : 'Guarda un archivo Word por participante y nómbralo con su código (por ejemplo, E1CM1.docx).';
     consejo.textContent = focal
-      ? 'En cada línea, escribe "Moderador:" o el código estable de quien habla ("P1:", "P2:", etc.). Usa un archivo por grupo focal y conserva los códigos al citar (por ejemplo, F1P2).'
+      ? 'En cada línea, escribe "Moderador:" o el código estable de quien habla ("P1:", "P2:", etc.). Conserva los códigos al citar (por ejemplo, F1P2).'
       : 'Al inicio de cada línea, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:".';
   }
   $('#tipoT').addEventListener('change', () => { msgT.textContent = ''; selLab = {}; pintarModoTranscripcion(); render(); });
+  const elegirModo = m => { if ($('#tipoT').value === m) return; $('#tipoT').value = m; $('#tipoT').dispatchEvent(new Event('change')); };
+  $$('.modo-sel [data-modo]').forEach(b => b.addEventListener('click', () => elegirModo(b.dataset.modo)));
+  // Si en la vista 1 marcó solo grupo focal (o solo entrevista), el modo se ajusta solo.
+  const modoPorCamino = () => camino.focal && !camino.entrevista ? 'focal' : camino.entrevista && !camino.focal ? 'entrevista' : null;
+  $('#caminos').addEventListener('change', () => { const m = modoPorCamino(); if (m) elegirModo(m); });
 
   function setTexto(nuevo, selIdx) {
     ta.value = nuevo; render();
@@ -1474,7 +1487,7 @@
     }).catch(() => { msgT.className = 'msg err'; msgT.textContent = 'No se pudo generar la plantilla.'; });
   });
 
-  pintarCaminos(); restaurarT(); pintarModoTranscripcion(); render();
+  pintarCaminos(); if (modoPorCamino()) $('#tipoT').value = modoPorCamino(); restaurarT(); pintarModoTranscripcion(); render();
   const m = /^#v([1-4])$/.exec(location.hash || '');
   mostrar(m ? +m[1] : 1, false);
 })();
