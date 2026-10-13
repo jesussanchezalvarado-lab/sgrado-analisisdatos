@@ -196,6 +196,7 @@
   .alerta .ico{font-size:34px}
   @media(min-width:861px){.espacio .panel{position:sticky;top:68px;max-height:calc(100vh - 92px);overflow:auto}}
   .qz{margin:0 0 18px}.qz p.q{font-weight:600;margin:0 0 10px}
+  .qz .q-ej{margin:0 0 12px;padding:10px 12px;background:var(--gris-claro);border-left:3px solid var(--azul);border-radius:4px;font-size:14px;line-height:1.5}
   .qz .op{display:block;width:100%;text-align:left;min-height:44px;margin:0 0 8px;padding:10px 14px;border:1.5px solid #c9d1d9;border-radius:8px;background:#fff;font:14.5px 'Open Sans',sans-serif;color:var(--texto);cursor:pointer}
   .qz .op:hover{border-color:var(--azul)}
   .qz .op.ok{border-color:var(--verde);background:var(--verde-claro)}
@@ -468,7 +469,7 @@
     </details>
 
     <div class="sub" id="s3-4"><span class="num">4</span><h3>Evita los errores más frecuentes</h3></div>
-    <p class="lead">Estos errores aparecieron en una transcripción real de un grupo de años anteriores (con los nombres cambiados). Todos se pueden evitar revisando el borrador con la grabación.</p>
+    <p class="lead">Estos errores se detectaron en transcripciones de años anteriores. Los fragmentos se anonimizaron y algunos se adaptaron para explicar cómo corregirlos. Revisa siempre el borrador con la grabación.</p>
     <div class="scroll-x">
       <table class="tabla-ej" style="min-width:760px">
         <caption class="sr">Errores frecuentes en transcripciones, con ejemplos reales y cómo corregirlos</caption>
@@ -477,7 +478,7 @@
           <tr><td><strong>Iniciales o nombres en las etiquetas</strong></td><td>"A: Bueno, mucho gusto. Yo soy [nombre]…"<br>"F: Ya."</td><td>Usa "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:" y "P1:", "P2:"). Identifica al informante solo con su código (por ejemplo, E1PH) y reemplaza nombres de personas y colegios por [nombre] o [establecimiento].</td></tr>
           <tr><td><strong>Muletillas y repeticiones</strong></td><td>"…ordenar los contenidos, <u>cierto</u>, como dije anteriormente, también ayuda <u>como</u> a darle el sentido lógico, <u>cierto</u> a las clases…"</td><td>Quítalas sin cambiar las palabras de la persona.</td></tr>
           <tr><td><strong>Palabras mal reconocidas por la herramienta</strong></td><td>"…cuando es la formación <u>universaria</u>…"<br>"Que les vaya muy <u>viendo</u>…"</td><td>Escucha de nuevo ese tramo. Si confirmas la palabra, corrígela ("universitaria"). Si no se entiende, escribe [inaudible].</td></tr>
-          <tr><td><strong>Dos personas en un mismo párrafo</strong></td><td>"F: Sí, ustedes no tienen un formato específico del área. <u>A: ¿Ustedes les van mostrando</u> dependiendo del proceso…?"</td><td>Separa cada turno en su propio párrafo, con su etiqueta.</td></tr>
+          <tr><td><strong>Dos personas en un mismo párrafo</strong></td><td>"A: ¿Cómo guían a los estudiantes durante el proceso? <u>F: Como no hay un formato específico para el área, les vamos mostrando qué hacer en cada etapa.</u>"</td><td>Empieza un párrafo nuevo cada vez que cambia quién habla.</td></tr>
           <tr><td><strong>Respuestas cortadas</strong></td><td>"…el propio uso del lenguaje a veces puede ponerte en problemas y también <u>condicion</u>"</td><td>Vuelve a la grabación y completa la frase. Si el audio se corta, marca [inaudible].</td></tr>
         </tbody>
       </table>
@@ -1444,12 +1445,13 @@
 (function(){
   var Q=[
    {p:'"…cuando es la formación universaria, por lo general siempre es como el ideal…" La herramienta escribió "universaria". ¿Qué haces?',o:['Lo dejo así, es lo que transcribió la herramienta','Escucho de nuevo ese tramo y, si dijo "universitaria", lo corrijo','Borro la frase completa','Lo reemplazo por una palabra que suene parecida'],c:1,e:'Si al escuchar confirmas la palabra, se corrige. Si no se entiende, se marca [inaudible]. Nunca se adivina.'},
-   {p:'¿Qué problema tiene este párrafo? "F: Sí, ustedes no tienen un formato específico del área. A: ¿Ustedes les van mostrando dependiendo del proceso?"',o:['Tiene muletillas','Mezcla dos turnos de habla en un mismo párrafo, además de usar iniciales','Está en la letra equivocada','No tiene ningún problema'],c:1,e:'Cada turno va en su propio párrafo con su etiqueta (Entrevistador: / Participante:). Si los turnos se mezclan, la codificación le atribuye a la persona palabras que no dijo.'}
+  {p:'¿Qué problema tiene este párrafo?',ej:'A: ¿Ustedes les van mostrando un formato de planificación? F: No, no nos dan uno, pero depende del profesor (...).',o:['Tiene muletillas','Mezcla dos turnos de habla en un mismo párrafo, además de usar iniciales','Está en la letra equivocada','No tiene ningún problema'],c:1,e:'Cada turno va en su propio párrafo con su etiqueta (Entrevistador: / Participante:). Si los turnos se mezclan, la codificación le atribuye a la persona palabras que no dijo.'}
   ];
   var box=document.getElementById('qz'); if(!box) return;
   Q.forEach(function(q,i){
     var d=document.createElement('div'); d.className='qz';
     var h='<p class="q">'+(i+1)+'. '+q.p.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
+    if(q.ej) h+='<p class="q-ej">'+q.ej.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';
     q.o.forEach(function(t,j){h+='<button type="button" class="op" data-j="'+j+'">'+t+'</button>';});
     h+='<p class="fb" role="status" aria-live="polite"></p>';
     d.innerHTML=h; box.appendChild(d);
