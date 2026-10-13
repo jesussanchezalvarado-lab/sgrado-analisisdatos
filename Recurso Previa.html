@@ -325,7 +325,7 @@
     <ul class="subnav no-print" aria-label="Pasos de esta vista"><li><a href="#s2-1"><b>1</b>Codifica tus respuestas</a></li><li><a href="#s2-2"><b>2</b>Arma la estructura de la base</a></li><li><a href="#s2-3"><b>3</b>Completa tus tablas</a></li><li><a href="#s2-4"><b>4</b>Revisa antes de analizar</a></li></ul>
 
     <h3 class="h3" style="margin-top:0">¿Qué es tabular?</h3>
-    <p class="lead">Tabular es traspasar las respuestas de tu instrumento a una tabla ordenada, llamada base de datos. En ella cada fila es un participante y cada columna una pregunta. Con esa tabla, en el análisis, el programa Jamovi cuenta cuántas veces aparece cada respuesta y calcula la media y la moda por ti. Al final de este recurso te indicamos cómo descargarlo.</p>
+    <p class="lead">Tabular es traspasar las respuestas de tu instrumento a una tabla ordenada, llamada base de datos. En ella cada fila es un encuestado y cada columna una pregunta. Con esa tabla, en el análisis, el programa Jamovi cuenta cuántas veces aparece cada respuesta y calcula la media y la moda por ti. Al final de este recurso te indicamos cómo descargarlo.</p>
     <p class="lead">Para empezar el análisis necesitas tu base de datos <strong>en Excel</strong> y subida a la carpeta Drive del curso.</p>
 
     <div class="sub" id="s2-1"><span class="num">1</span><h3>Codifica tus respuestas</h3></div>
@@ -343,15 +343,15 @@
     </details>
 
     <div class="sub" id="s2-2"><span class="num">2</span><h3>Arma la estructura de la base</h3></div>
-    <p class="lead">Así se ve una base ya tabulada. Cada fila es un participante y cada columna una pregunta (P1, P2…). Los valores son los códigos del libro de códigos.</p>
-    <div class="aviso"><p>En la columna <strong>"Participante"</strong> escribe solo el número de cada persona (1, 2, 3…), sin letras. La letra "P" se usa solo para las preguntas (P1, P2…).</p></div>
+    <p class="lead">Así se ve una base ya tabulada. Cada fila es un encuestado y cada columna una pregunta (P1, P2…). Los valores son los códigos del libro de códigos.</p>
+    <div class="aviso"><p>En la columna <strong>"Encuestado"</strong> escribe solo el número de cada persona (1, 2, 3…), sin letras. La letra "P" se usa solo para las preguntas (P1, P2…).</p></div>
     <p class="small" style="margin:0 0 8px">Ejemplo con datos inventados. Hoja "Perfil" (P1 = Repitencia, P2 = Tiempo en el establecimiento, P3 = Género).</p>
     <div class="scroll-x" style="max-width:520px;margin-bottom:24px"><table class="ex-tabla" style="min-width:320px" id="tPerfil"></table></div>
     <p class="small" style="margin:0 0 8px">Hoja "Preguntas" (escala Likert). El perfil usó P1 a P3, así que los enunciados siguen desde P4. Escala 1 a 4, de "Totalmente en desacuerdo" a "Totalmente de acuerdo".</p>
     <div class="scroll-x"><table class="ex-tabla" style="min-width:600px" id="tPreg"></table></div>
 
     <div class="sub" id="s2-3"><span class="num">3</span><h3>Completa tus tablas</h3></div>
-    <p class="lead">Completa el libro de códigos y las respuestas de cada participante. Las tablas se ordenan en dos filas: arriba el <strong>libro de códigos</strong> (qué significa cada número) y abajo las <strong>respuestas</strong>. Al final descargas todo en un Excel.</p>
+    <p class="lead">Completa el libro de códigos y las respuestas de cada encuestado. Las tablas se ordenan en dos filas: arriba el <strong>libro de códigos</strong> (qué significa cada número) y abajo las <strong>respuestas</strong>. Al final descargas todo en un Excel.</p>
     <div class="alerta" role="note">
       <span class="ico" aria-hidden="true">⚠️</span>
       <p><strong>Lo que escribas se guarda solo en este navegador y en este computador.</strong> Si cambias de equipo, usas una ventana privada o borras el historial, se pierde. <strong>Descarga el Excel cada vez que termines</strong> y súbelo a la carpeta Drive del curso.</p>
@@ -667,7 +667,7 @@
   const PERFIL = [[1, 4, 1], [2, 4, 2], [2, 3, 1], [1, 1, 2], [2, 2, 3], [1, 2, 1], [2, 4, 1], [2, 3, 2], [1, 2, 2], [1, 2, 3]];
   const PREG = [[4, 4, 1, 1, 3, 3, 2, 1], [3, 4, 1, 2, 2, 2, 3, 2], [4, 2, 1, 1, 3, 3, 2, 3], [2, 3, 1, 2, 2, 1, 2, 4], [3, 4, 2, 2, 2, 3, 2, 3], [2, 1, 2, 2, 2, 2, 4, 2], [1, 3, 2, 1, 1, 2, 4, 1], [3, 3, 3, 1, 1, 3, 1, 3], [4, 4, 4, 3, 1, 2, 1, 2], [4, 3, 3, 4, 4, 1, 1, 3]];
   function tabla(el, cols, data, color) {
-    el.innerHTML = '<caption class="sr">Ejemplo de base de datos</caption><thead><tr><th scope="col">Participante</th>' + cols.map(c => `<th scope="col">${c}</th>`).join('') + '</tr></thead><tbody>' +
+    el.innerHTML = '<caption class="sr">Ejemplo de base de datos</caption><thead><tr><th scope="col">Encuestado</th>' + cols.map(c => `<th scope="col">${c}</th>`).join('') + '</tr></thead><tbody>' +
       data.map((r, i) => `<tr><td style="color:${color}">${i + 1}</td>${r.map(v => `<td>${v}</td>`).join('')}</tr>`).join('') + '</tbody>';
   }
   tabla($('#tPerfil'), ['P1', 'P2', 'P3'], PERFIL, '#0055B7');
@@ -677,7 +677,7 @@
     ['Celdas vacías', 'Si alguien no respondió, deja la celda vacía. No escribas 0: en una escala de 1 a 4 el 0 no existe y bajaría la media. Jamovi tratará la celda vacía como dato perdido.'],
     ['Valores fuera de rango', 'Cada columna solo puede tener los códigos de tu libro de códigos. Un 5 en una escala de 1 a 4 es un error de digitación y se corrige mirando el instrumento original.'],
     ['Solo números', 'Nada de letras, espacios ni símbolos en las celdas de respuesta. Tampoco "NR", "-" o "x".'],
-    ['Una fila por participante', 'El número de filas debe coincidir con el número de instrumentos aplicados, sin filas repetidas ni vacías entre medio.'],
+    ['Una fila por encuestado', 'El número de filas debe coincidir con el número de instrumentos aplicados, sin filas repetidas ni vacías entre medio.'],
   ];
   $('#revBase').innerHTML = REV.map(r => `<div class="card" style="border-top-color:var(--ambar-borde)"><h3 class="card-t">${esc(r[0])}</h3><p class="txt">${esc(r[1])}</p></div>`).join('');
 
@@ -690,7 +690,7 @@
 
   const CONSEJOS = [
     'Al inicio de cada línea, escribe quién habla y luego dos puntos: "Entrevistador:" y "Participante:" (en un grupo focal, "Moderador:", "P1:", "P2:", etc.).',
-    'Guarda un archivo Word por entrevistado y nómbralo con su código (por ejemplo, E1CM1.docx).',
+    'Guarda un archivo Word por participante y nómbralo con su código (por ejemplo, E1CM1.docx).',
     'Si una parte no se entiende, escribe [inaudible] y sigue. No completes con lo que crees que dijo.',
     'Omite muletillas (eh, o sea, este), repeticiones y sonidos, pero conserva las palabras propias de la persona.',
     'No uses negrita, subrayado ni colores en el texto de las respuestas.',
@@ -717,17 +717,17 @@
   const NOTAS = {
     codPerfil: 'Una fila por pregunta de perfil. Escribe qué información recoge y qué significa cada código (Código 1 = lo que marcaste con 1, y así). Deja vacíos los códigos que no uses; si necesitas más, agrega una columna.',
     codPreguntas: 'Cada tarjeta es una dimensión. Escribe su nombre y elige el tipo de escala que usaron todos sus enunciados, así no la repites en cada fila. Usa "+ Fila en esta dimensión" para sumar enunciados y "+ Agregar dimensión" para una tarjeta nueva. Numera los enunciados de corrido, después del perfil.',
-    perfil: 'Una fila por participante. Cambia P1, P2, P3 por tus variables de perfil (puedes agregar columnas) y escribe el código de cada respuesta. El número de participante se pone solo. Si alguien no respondió, deja la celda vacía.',
-    preguntas: 'Una fila por participante y una columna por enunciado. Los nombres continúan después del perfil (aquí P4 a P11); cámbialos según tu libro de códigos. Cada celda lleva el código de la respuesta (1 a 4). Agrega filas hasta completar tu número de participantes. Si alguien no respondió, deja la celda vacía.',
+    perfil: 'Una fila por encuestado. Cambia P1, P2, P3 por tus variables de perfil (puedes agregar columnas) y escribe el código de cada respuesta. El número de encuestado se pone solo. Si alguien no respondió, deja la celda vacía.',
+    preguntas: 'Una fila por encuestado y una columna por enunciado. Los nombres continúan después del perfil (aquí P4 a P11); cámbialos según tu libro de códigos. Cada celda lleva el código de la respuesta (1 a 4). Agrega filas hasta completar tu número de encuestados. Si alguien no respondió, deja la celda vacía.',
     perfilInf: 'Una fila por informante. En la primera columna escribe su código (por ejemplo E1CM1; en un grupo focal, F1P2). Cambia P1, P2, P3 por tus preguntas de perfil y escribe el código de cada respuesta. Si alguien no respondió, deja la celda vacía.',
   };
   const PH = { codPerfil: { variable: 'Ej: P1', info: 'Ej: Género', c1: 'Ej: Hombre', c2: 'Ej: Mujer', c3: 'Ej: Prefiero no decirlo' }, perfil: { c1: 'Ej: 1' }, preguntas: { c1: 'Ej: 3' }, perfilInf: { c0: 'Ej: E1CM1', c1: 'Ej: 1' } };
   const mkCols = labels => labels.map((l, i) => ({ key: 'c' + i, label: l }));
   const mkRows = (cols, n) => Array.from({ length: n }, (_, i) => { const r = { id: i + 1 }; cols.forEach(c => { r[c.key] = ''; }); return r; });
   const nuevoCodPerfil = () => ({ cols: [['variable', 'P'], ['info', 'Variable'], ['c1', 'Código 1'], ['c2', 'Código 2'], ['c3', 'Código 3'], ['c4', 'Código 4']].map(a => ({ key: a[0], label: a[1] })), rows: ['P1', 'P2', 'P3'].map((v, i) => ({ id: i + 1, variable: v, info: '', c1: '', c2: '', c3: '', c4: '' })) });
-  const nuevoPerfil = id => { const pc = mkCols(['Participante', 'P1', 'P2', 'P3']); return { id, nombre: '', codPerfil: nuevoCodPerfil(), perfil: { cols: pc, rows: mkRows(pc, 10) } }; };
+  const nuevoPerfil = id => { const pc = mkCols(['Encuestado', 'P1', 'P2', 'P3']); return { id, nombre: '', codPerfil: nuevoCodPerfil(), perfil: { cols: pc, rows: mkRows(pc, 10) } }; };
   const nuevaEncuesta = id => {
-    const rc = mkCols(['Participante', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11']);
+    const rc = mkCols(['Encuestado', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11']);
     return { id, nombre: '', perfiles: [nuevoPerfil(1)],
       codPreguntas: { groups: [{ id: 1, dimension: '', escalaTipo: null, rows: ['P4', 'P5', 'P6', 'P7'].map((v, i) => ({ id: i + 1, variable: v, enunciado: '' })) }] },
       preguntas: { cols: rc, rows: mkRows(rc, 10) } };
@@ -793,7 +793,7 @@
     const fijas = k === 'codPerfil' ? 2 : (num || inf ? 1 : 0);
     const ph = PH[k];
     const head = t.cols.map((c, i) => (num && i === 0)
-      ? '<th scope="col" style="width:110px">Participante</th>' + (multiQ ? '<th scope="col" style="width:150px">Perfil</th>' : '')
+      ? '<th scope="col" style="width:110px">Encuestado</th>' + (multiQ ? '<th scope="col" style="width:150px">Perfil</th>' : '')
       : (inf && i === 0) ? '<th scope="col" style="width:150px">Informante</th>'
       : `<th scope="col"><div class="th-in"><input value="${esc(c.label)}" data-ac="lab" data-k="${esc(c.key)}" aria-label="Nombre de la columna ${i + 1}">${i >= fijas ? `<button type="button" data-ac="delcol" data-k="${esc(c.key)}" aria-label="Eliminar columna ${esc(c.label)}">×</button>` : ''}</div></th>`).join('');
     const body = t.rows.map((r, ri) => '<tr>' + t.cols.map((c, ci) => {
@@ -855,11 +855,11 @@
     const e = enc();
     if (k === 'perfil') {
       const p = perfilDeTab(tab), off = offsetPerfil(e, p);
-      return NOTAS.perfil + (off ? ` La numeración continúa desde el perfil anterior (parte en ${off + 1}), para que cada participante tenga un número único en la hoja Preguntas.` : '');
+      return NOTAS.perfil + (off ? ` La numeración continúa desde el perfil anterior (parte en ${off + 1}), para que cada encuestado tenga un número único en la hoja Preguntas.` : '');
     }
     const rangos = e.perfiles.map(p => { const o = offsetPerfil(e, p); return `${o + 1} a ${o + p.perfil.rows.length}: ${nombrePerfil(e, p)}`; }).join('; ');
     const total = e.perfiles.reduce((s, p) => s + p.perfil.rows.length, 0), faltan = total - e.preguntas.rows.length;
-    return NOTAS.preguntas + ` Todos los perfiles responden en esta misma hoja, en el mismo orden que sus tablas de perfil (filas ${rangos}). La columna Perfil se completa sola.` + (faltan > 0 ? ` Faltan ${faltan} fila(s) para cubrir a todos los participantes; usa “+ Fila”.` : '');
+    return NOTAS.preguntas + ` Todos los perfiles responden en esta misma hoja, en el mismo orden que sus tablas de perfil (filas ${rangos}). La columna Perfil se completa sola.` + (faltan > 0 ? ` Faltan ${faltan} fila(s) para cubrir a todos los encuestados; usa “+ Fila”.` : '');
   }
   function pintarEd() {
     const d = tabsDef();
@@ -1048,7 +1048,7 @@
       // Hojas de respuestas. Con varios perfiles, la numeración es continua y Preguntas lleva la columna Perfil.
       const hojaDatos = (nombre, t, numero, extra) => {
         const h = wb.addWorksheet(hojaSegura(nombre));
-        const heads = t.cols.map((c, j) => j === 0 ? (numero ? 'Participante' : 'Informante') : c.label);
+        const heads = t.cols.map((c, j) => j === 0 ? (numero ? 'Encuestado' : 'Informante') : c.label);
         if (extra) heads.splice(1, 0, 'Perfil');
         heads.forEach((l, j) => { const cc = h.getCell(1, j + 1); cc.value = l; encabezado(cc); h.getColumn(j + 1).width = Math.max(j === 0 ? 14 : 8, String(l).length + 2); });
         if (extra) h.getColumn(2).width = 22;
@@ -1140,7 +1140,7 @@
     ] },
     { id: 'encuesta', t: 'Encuesta', visible: c => c.encuesta, items: [
       'El libro de códigos está completo, con perfil y enunciados numerados de corrido.',
-      'La base tiene una fila por participante y una columna por pregunta, con los nombres en la primera fila.',
+      'La base tiene una fila por encuestado y una columna por pregunta, con los nombres en la primera fila.',
       'Las celdas tienen solo números del libro de códigos, y las sin respuesta están vacías, no con 0.',
       'No hay celdas combinadas, filas de totales ni colores que signifiquen algo.',
       'Revisaste cada columna y no hay valores fuera de rango.',
@@ -1510,7 +1510,7 @@
     encuesta:[
      {p:'Un enunciado se responde con una escala de 1 a 4. ¿Qué significa el 4?',o:['Siempre significa "Totalmente de acuerdo"','Depende de la escala: puede ser acuerdo, frecuencia, importancia u otro grado, según lo que definiste en tu instrumento','La cantidad de veces que la persona respondió','La nota que obtiene el participante'],c:1,e:'El número es solo un código. Su significado lo da la escala de tu instrumento: en una de acuerdo, 4 puede ser "Totalmente de acuerdo"; en una de frecuencia, "Siempre". Por eso necesitas un libro de códigos que lo deje anotado.'},
      {p:'En el Excel, el género quedó escrito como "Mujer", "mujer" y "Mujer " (con un espacio al final). ¿Qué crees que hará el programa al contar?',o:['Los junta automáticamente en una sola categoría','Los cuenta como tres categorías distintas','Borra los que están mal escritos','Muestra un aviso de error'],c:1,e:'Para el programa son textos diferentes, así que el gráfico saldría con tres barras. Por eso cada respuesta se codifica con un número.'},
-     {p:'20 personas respondieron una encuesta de 15 enunciados. ¿Cómo ordenarías la tabla para que el programa cuente las respuestas de cada enunciado?',o:['20 filas (una por persona) y 15 columnas (una por enunciado)','15 filas (una por enunciado) y 20 columnas (una por persona)','Una sola columna con las 300 respuestas seguidas','Una hoja distinta para cada persona'],c:0,e:'Cada fila es un participante y cada columna una pregunta. Así el programa recorre cada columna y cuenta, por ejemplo, cuántos marcaron 3 en P5.'},
+    {p:'20 encuestados respondieron una encuesta de 15 enunciados. ¿Cómo ordenarías la tabla para que el programa cuente las respuestas de cada enunciado?',o:['20 filas (una por encuestado) y 15 columnas (una por enunciado)','15 filas (una por enunciado) y 20 columnas (una por encuestado)','Una sola columna con las 300 respuestas seguidas','Una hoja distinta para cada encuestado'],c:0,e:'Cada fila corresponde a un encuestado y cada columna a una pregunta. Así el programa recorre cada columna y cuenta, por ejemplo, cuántos marcaron 3 en P5.'},
      {p:'En una escala de 1 a 4 alguien digitó 44 en vez de 4. ¿Qué crees que le pasa a la media de esa pregunta?',o:['Nada, es un solo dato entre muchos','Sube y deja de representar lo que respondió el grupo','Baja un poco','El programa lo corrige solo'],c:1,e:'Un solo valor fuera de la escala basta para inflar la media. Por eso, antes de analizar, se revisa que todos los valores estén dentro de la escala.'}
     ],
     transcripcion:[
